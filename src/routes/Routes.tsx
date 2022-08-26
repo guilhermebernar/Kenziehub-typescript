@@ -8,12 +8,12 @@ import AuthRoutes from './AuthRoutes';
 const RoutesMain = () => {
     return(
         <Routes>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/cadastro" element={<Register/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/cadastro' element={<Register/>}/>
               <Route element={<AuthRoutes/>}>
-                <Route path="/dashboard/:id" element={<Dashboard/>}/>
+                <Route path='/dashboard/:id' element={<Dashboard/>}/>
               </Route>
-            <Route path="*" element={<Navigate replace to="/login"/>}/>
+            <Route path='*' element={<Navigate replace to='/login'/>}/>
         </Routes>
     )
 }

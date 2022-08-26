@@ -1,7 +1,7 @@
 import logo from '../../assets/logo_kenziehub.png'
 import { Link } from 'react-router-dom'
 import { ButtonLightGray, Icon } from '../../components/Buttons.style'
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Contexts } from '../../providers/Context'
 import { MainDashboard } from '../../components/Backgrounds.style';
 import { ContainerTechList, HeaderDashboard, ImgList, InfoCourseModule, InfoList, InfoName, Infos } from './Dashboard.style';
@@ -26,23 +26,23 @@ const Dashboard = ()=> {
         </Link>
       </HeaderDashboard>
       <Infos>
-        <InfoName>Olá, {user.name}</InfoName>
-        <InfoCourseModule>{user.course_module}</InfoCourseModule>
+        <InfoName>Olá, {user?.name}</InfoName>
+        <InfoCourseModule>{user?.course_module}</InfoCourseModule>
       </Infos>
       
       <SetTech formTechs={formTechs} setFormTechs={setFormTechs} />
       
-      {user.techs.length === 0? (
+      {user?.techs?.length === 0? (
         <ContainerTechList>
           <InfoList>Adicione techs...</InfoList>
           <ImgList src={listNull} alt='Homem sentado escrevendo'/>
         </ContainerTechList>
       ) : (
         <ContainerTechList>
-          {user.techs.map((tech, index) => (
+          {user?.techs?.map((tech, index) => (
             <TechBox 
             key={index} 
-            techs={tech}
+            techData={tech}
             />
           ))}
         </ContainerTechList>

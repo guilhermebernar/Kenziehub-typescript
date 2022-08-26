@@ -11,7 +11,9 @@ import { Contexts } from '../../providers/Context';
 import { Link } from "react-router-dom";
 import { MainLogin } from '../../components/Backgrounds.style';
 import { motion } from 'framer-motion'
-import loginArt from '../../assets/loginTheme.png'
+import loginArt from '../../assets/loginTheme.png' 
+import { ILoginUser } from '../../providers/interface';
+
 
 const Login = ()=> {
 
@@ -19,13 +21,13 @@ const Login = ()=> {
       register,
       handleSubmit,
       formState: { errors },
-    } = useForm({ resolver: yupResolver(schema) });
+    } = useForm<ILoginUser>({ resolver: yupResolver(schema) });
     const {loginUser} = useContext(Contexts)
     
     return(
         <MainLogin>
             <HeaderLogin>
-              <LogoImg src={logo} alt="logo"/>
+              <LogoImg src={logo} alt='logo'/>
             </HeaderLogin> 
             
             <ContainerLogin>
@@ -60,7 +62,7 @@ const Login = ()=> {
                     Não possui uma conta?
                   </Question>
                   
-                    <Link to="/cadastro">
+                    <Link to='/cadastro'>
                       <ButtonLightGray>
                         <span>Cadastrar</span>
                       </ButtonLightGray>

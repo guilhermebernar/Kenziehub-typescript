@@ -8,15 +8,23 @@ import { Contexts } from '../../../providers/Context'
 import { schema } from '../../../validators/inputTech'
 import { motion } from 'framer-motion'
 import addTech from '../../../assets/plus.png'
+import { ITechRegister } from "../../../providers/interface";
 
+interface ISetTech {
+  formTechs: boolean;
+  setFormTechs: (state: boolean) => void;
+}
 
-const SetTech = ({formTechs, setFormTechs})=> {
+const SetTech = ({formTechs, setFormTechs}:ISetTech)=> {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<ITechRegister>({ resolver: yupResolver(schema) });
   const { inputTech } = useContext(Contexts)
+
+  const closeModal = ()=>setFormTechs(false)
+  const openModal = ()=>setFormTechs(true)
   
   return (<>{formTechs?(
     <>
@@ -33,7 +41,7 @@ const SetTech = ({formTechs, setFormTechs})=> {
 
           <label htmlFor='title' >Título</label>
           <input 
-            name='title' 
+            id='title' 
             type='text'
             {...register('title')}
             />
@@ -41,7 +49,7 @@ const SetTech = ({formTechs, setFormTechs})=> {
 
           <label htmlFor='status'>Status</label>
           <select 
-            name='status'
+            id='status'
             {...register('status')}
             >
             <option value='Iniciante'>Iniciante</option>
@@ -52,7 +60,7 @@ const SetTech = ({formTechs, setFormTechs})=> {
 
           <Buttons>
               <ButtonPink type='submit'>Enviar</ButtonPink>
-              <ButtonDarkGray onClick={()=>setFormTechs(false)}>Fechar</ButtonDarkGray>
+              <ButtonDarkGray onClick={closeModal}>Fechar</ButtonDarkGray>
           </Buttons>
         </FormDefaut>
         </ContainerForm>
@@ -62,7 +70,7 @@ const SetTech = ({formTechs, setFormTechs})=> {
   ):(
     <ContainerFormOff>
       <FormOffTitle>Tecnologias</FormOffTitle>
-      <ButtonLightGray onClick={()=>setFormTechs(true)}>
+      <ButtonLightGray onClick={openModal}>
         <Icon src={addTech}/>
       </ButtonLightGray>
     </ContainerFormOff>
