@@ -24,9 +24,9 @@ const Register = ()=>{
     <MainRegister>
 
       <HeaderRegister>
-        <LogoImg src={Logo} alt="Logo kenziehub" />
+        <LogoImg src={Logo} alt='Logo kenziehub' />
         
-        <Link replace to="/login">
+        <Link replace to='/login'>
          <ButtonDarkGray>Voltar</ButtonDarkGray>
         </Link>
         
